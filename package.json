@@ -1,0 +1,11 @@
+{
+  "name": "reddit_clone_practice",
+  "version": "1.0.0",
+  "description": "Simple single page app to practice React, Redux and Webpack.  The app will pull data from the reddit api and display it for the user to manipulate.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick Getka",
+  "license": "ISC"
+}
