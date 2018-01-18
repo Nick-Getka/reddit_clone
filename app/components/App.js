@@ -1,4 +1,6 @@
 import React from 'react';
+import MainContainer from './MainContainer';
+import Footer from './Footer';
 import Header from './Header';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -30,8 +32,8 @@ class App extends React.Component {
   render(){
     return(
       <MuiThemeProvider muiTheme={muiTheme}>
-        <Header />
-        I&#39;M A DIV!
+        <MainContainer />
+        <Footer />
       </MuiThemeProvider>
     );
   }

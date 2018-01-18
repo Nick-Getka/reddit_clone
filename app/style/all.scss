@@ -6,6 +6,8 @@
 @import "left-rail";
 @import "main";
 
-html {
+#default {
   font-family: 'Roboto', sans-serif;
+  margin:0;
+  padding:0;
 }
