@@ -1,10 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
-var LiveReloadPlugin = require('webpack-livereload-plugin');
-var HTMLWebpackPlugin = require('html-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: __dirname+'/app/index.js',
+  entry: ['./app/index.js'],
   output: {
     filename: 'app.bundle.js',
     path: path.resolve('build')
@@ -12,12 +12,41 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           presets: ["es2015", "react"]
-        },
-        test: /\.jsx?$/
+        }
+      },
+      {
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 25000,
+          }
+        }
+      },
+      {
+        test: /\.(scss)$/,
+        use: [{
+          loader: 'style-loader', // inject CSS to page
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS modules
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
+          }
+        }, {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
       }
     ]
   },
