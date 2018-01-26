@@ -1,34 +1,41 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
-import LeftRail from './LeftRail';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as allActions from '../actions';
 
 import snuLogo from '../static/img/snu.png'
-
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false};
   }
-
-  handleToggle(){
-    console.log("test1")
-    this.setState({open: !this.state.opsn})
-  }
-
   render(){
+
     return(
       <AppBar
+        className="app-bar"
         title="Simply Reddit"
-        onLeftIconButtonClick = { this.handleToggle.bind(this) }
+        onLeftIconButtonClick = {() => this.props.toggleDrawer(!this.props.open)}
         >
-        <img className="title-logo" src={snuLogo} alt="redditLogo"/>
-        <LeftRail open={this.state.open} toggleHandler={this.handleToggle}/>
+        <a href="/">
+          <img className="title-logo" src={snuLogo} alt="redditLogo"/>
+        </a>
       </AppBar>
 
     );
   }
 };
 
-export default Header;
+function mapStateToProps(state){
+  return {
+    open: state.drawerReducer.open
+  }
+}
+
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({...allActions}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Header);

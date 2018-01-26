@@ -1,13 +1,16 @@
-@import "custom";
-@import "~bootstrap/scss/bootstrap";
-
 @import "header";
 @import "footer";
 @import "left-rail";
 @import "main";
 
-#default {
+body {
   font-family: 'Roboto', sans-serif;
-  margin:0;
-  padding:0;
+  margin:{
+    top:0px;
+    bottom:0px;
+  }
+  padding:{
+    top:0px;
+    bottom:0px;
+  }
 }
