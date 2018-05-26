@@ -1,4 +1,17 @@
-.post-img{
+.container{
+  margin: 0 auto;
+  max-width:95% !important;
+}
+
+.post-title{
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.post-content{
   max-height:75% !important;
   max-width:75% !important;
+  margin: auto;
+  padding-left: 16px!important;
+  padding-right: 16px!important;
 }

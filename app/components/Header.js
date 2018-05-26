@@ -1,9 +1,5 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import * as allActions from '../actions';
 
 import snuLogo from '../static/img/snu.png'
 
@@ -17,7 +13,7 @@ class Header extends React.Component {
       <AppBar
         className="app-bar"
         title="Simply Reddit"
-        onLeftIconButtonClick = {() => this.props.toggleDrawer(!this.props.open)}
+        onLeftIconButtonClick = {()=>{this.props.onLeftRailClick()}}
         >
         <a href="/">
           <img className="title-logo" src={snuLogo} alt="redditLogo"/>
@@ -28,14 +24,4 @@ class Header extends React.Component {
   }
 };
 
-function mapStateToProps(state){
-  return {
-    open: state.drawerReducer.open
-  }
-}
-
-function matchDispatchToProps(dispatch){
-  return bindActionCreators({...allActions}, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Header);
+export default Header;

@@ -1,5 +1,5 @@
 import React from 'react';
-import MainContainer from './MainContainer';
+import Main from './Main';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -18,7 +18,7 @@ class App extends React.Component {
   render(){
     return(
       <MuiThemeProvider muiTheme={muiTheme}>
-        <MainContainer />
+        <Main />
       </MuiThemeProvider>
     );
   }

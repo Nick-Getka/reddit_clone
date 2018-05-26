@@ -1,8 +1,8 @@
 import React from 'react';
-import MenuItem from 'material-ui/MenuItem';
+import {MenuItem} from '@material-ui/core/MenuItem';
 import {connect} from 'react-redux';
-import * as allActions from '../actions';
 import {bindActionCreators} from 'redux';
+import {setActivePost} from "../modules/setActivePost";
 
 class PostButton extends React.Component{
   constructor(props) {
@@ -10,29 +10,30 @@ class PostButton extends React.Component{
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(op, post){
-    this.props.setActivePost(post);
-    this.props.toggleDrawer(!op);
+  handleClick(){
+    const {onLeftRailClick, setActivePost, post} = this.props;
+    onLeftRailClick();
+    setActivePost(post);
   }
+
   render(){
-    const {open, post} = this.props
+    const {open, post} = this.props;
+    var finalTitle = post.title.split(' ');
+    finalTitle = finalTitle.length > 5 ? finalTitle.slice(0,4).join(' ').concat(' . . . ') : finalTitle.slice(0,5).join(' ');
     return(
       <MenuItem
+        className = "menu-item"
         onClick = {() => this.handleClick(open, post)}
-        primaryText={post.title}
+        primaryText={finalTitle}
       />
     );
   };
 };
 
-function mapStateToProps(state){
-  return {
-    open: state.drawerReducer.open
-  }
-}
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setActivePost,
+  }, dispatch);
+};
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({...allActions}, dispatch);
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(PostButton);
+export default connect(null, matchDispatchToProps)(PostButton);
